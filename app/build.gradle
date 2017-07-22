@@ -1,0 +1,100 @@
+apply plugin: 'com.android.application'
+
+
+def versionMajor = 1
+def versionMinor = 0
+def versionPatch = 0
+
+android {
+    signingConfigs {
+        config {
+        }
+    }
+    compileSdkVersion 25
+    buildToolsVersion "26.0.0"
+    defaultConfig {
+        applicationId "ru.startandroid.androidlessons"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode versionMajor * 10000 + versionMinor * 100 + versionPatch
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+//        только рус и англ ресурсы и становка разрешений, которые поддерживаются
+//        resConfigs "en", "ru"
+//        resConfigs "nodpi", "hdpi", "xhdpi", "xxhdpi", "xxxhdpi"
+
+//        переменная
+//        buildConfigField "String", "YOUR_TOKEN", '"ABRAKADABRA"'
+//        Что-то делаем со своей строкой
+//        String token = BuildConfig.YOUR_TOKEN;
+
+    }
+    //    Прячем секретную информацию
+//    signingConfigs {
+//        release {
+//            storeFile file(project.property("androidLessons.signing") + ".keystore")
+//            storePassword "storePassword"
+//            keyAlias "KeyAlias"
+//            keyPassword "keyPassword"
+//        }
+//    }
+//    альтернативные папки с ресурсами
+//    sourceSets {
+//        main {
+//            res {
+//                srcDirs = [
+//                        'src/main/res',
+//                        'src/main/presentations/animations',
+//                        'src/main/presentations/layouts']
+//            }
+//        }
+//    }
+    buildTypes {
+        debug {
+//            переменные для дебага
+            buildConfigField "String", "TYPE", '"test set text from gradle"'
+//            buildConfigField "String", "API_URL", '"http://developer.alexanderklimov.ru/api/debug/"'
+//            buildConfigField "boolean", "REPORT_CRASHES", "true"
+//            использование
+//            Uri addressUri = Uri.parse(BuildConfig.API_URL);
+//            Intent openLinkIntent = new Intent(Intent.ACTION_VIEW, addressUri);
+//            startActivity(openLinkIntent);
+//
+//            вкл минификацию
+            minifyEnabled false
+//          префиксы и названия для дебаа
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+            resValue "string", "app_name", "androidLessons"
+        }
+        release {
+//            убрать неиспользуемые ресурсы и сервисы из сборки
+            shrinkResources true
+//            вкл минификацию
+            minifyEnabled true
+//            Имя apk
+            project.ext.set("archivesBaseName", "androidLessons-" + defaultConfig.versionName);
+//            имя для релиза
+            resValue "string", "app_name", "androidLessons (release)"
+            buildConfigField "String", "TYPE", '"RELEASE"'
+//            скрытые данные
+//            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    //    http://gradleplease.appspot.com/ http://search.maven.org/#browse
+    //    подключить библиотеку
+    //    compile 'com.squareup.picasso:picasso:2.5.2'
+}
