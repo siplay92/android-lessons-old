@@ -12,42 +12,42 @@ public class ActivityThree extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_three);
-        Log.d(TAG, "ActivityTwo: onCreate()");
+        Log.d(TAG, "ActivityThree: onCreate()");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.d(TAG, "ActivityTwo: onRestart()");
+        Log.d(TAG, "ActivityThree: onRestart()");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d(TAG, "ActivityTwo: onStart()");
+        Log.d(TAG, "ActivityThree: onStart()");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "ActivityTwo: onResume()");
+        Log.d(TAG, "ActivityThree: onResume()");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d(TAG, "ActivityTwo: onPause()");
+        Log.d(TAG, "ActivityThree: onPause()");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d(TAG, "ActivityTwo: onStop()");
+        Log.d(TAG, "ActivityThree: onStop()");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "ActivityTwo: onDestroy()");
+        Log.d(TAG, "ActivityThree: onDestroy()");
     }
 }
